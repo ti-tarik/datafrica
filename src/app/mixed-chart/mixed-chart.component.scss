@@ -1,0 +1,27 @@
+.navbar {
+  background-color: #00778b;
+  .navbar-brand{
+    padding-inline: 50px;
+    background-color: #cb3e2c;
+    color: #fff;
+  }
+}
+
+.breadcrumb{
+  .mr-cs{
+    margin-left: 20px;
+  }
+  a{
+    text-decoration: none;
+  }
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: ""
+  }
+  i{
+    color: var(--bs-secondary);
+  }
+  .bi-file-fill{
+    transform: rotate(90deg);
+    position: absolute;
+  }
+}

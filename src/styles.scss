@@ -1,5 +1,6 @@
 $primary: #1f3565;
 $secondary: #fed76c;
+$table-bg:  rgba($primary, .15);
+$table-striped-bg-factor: 1;
+$table-striped-bg: rgba(#f8f8f8, $table-striped-bg-factor);
 @import 'bootstrap/scss/bootstrap';
-
-

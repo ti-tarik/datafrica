@@ -1,0 +1,108 @@
+<div class="row shadow-lg">
+  <div class="col-12 p-2">
+    <div class="row">
+      <div class="col-4">
+        <div class="input-group ms-4 mt-1">
+          <span class="input-group-text" id="search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"></path>
+            </svg>
+          </span>
+          <input type="text" class="form-control" aria-label="Search" aria-describedby="search" [(ngModel)]="search" (ngModelChange)="onValueChange($event)" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+      <div class="col-8 d-flex justify-content-end align-items-center">
+        <ul class="list-group list-group-horizontal me-4">
+          <li class="list-group-item px-1"><i class="bi bi-flag-fill" style="color: #cb3e2c;"></i> Urgent</li>
+          <li class="list-group-item px-1"><i class="bi bi-emoji-smile-fill" style="color: #05616b;"></i> Dans le délai</li>
+          <li class="list-group-item px-1"><i class="bi bi-emoji-frown-fill" style="color: #cb3e2c;"></i> En retard</li>
+          <li class="list-group-item px-1"><i class="bi bi-emoji-neutral-fill text-secondary"></i> Hors délai</li>
+          <li class="list-group-item px-1"><i class="bi bi-file-earmark-text text-primary"></i> Traiter la demande</li>
+        </ul>
+        <a class="btn btn-primary export me-3">
+          <i class="bi bi-file-earmark-text-fill text-success"></i>
+          Exporter en CSV
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 table-responsive" style="max-height: 275px;">
+    <table class="table table-bordered border-primary table-striped">
+      <thead>
+        <tr>
+          <th scope="col">TASK ID</th>
+          <th scope="col">CASE ID</th>
+          <th scope="col">DATE DE<br>CREATION</th>
+          <th scope="col">DATE DE<br>DERNIERE MAJ</th>
+          <th scope="col">DATE<br>D'ARCHIVE</th>
+          <th scope="col">EXECT. PAR<br>MATRICULE</th>
+          <th scope="col">ACTEUR</th>
+          <th scope="col" style="width:100px">ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        @if (filter.value !== 'Tout' || search.length > 0) {
+          @for (task of tasksByFilter; track $index) {
+            <tr>
+              <td>{{task.taskid}}</td>
+              <td>{{task.caseid}}</td>
+              <td>{{task.dateready | date:'dd/MM/yyyy' }}</td>
+              <td>{{task.dateassignee | date:'dd/MM/yyyy' }}</td>
+              <td>{{(task.datearchivee | date:'dd/MM/yyyy') ?? '-' }}</td>
+              <td>{{task.executeeparmatricule}}</td>
+              <td>{{task.acteur}}</td>
+              <td class="p-0">
+                <a class="btn btn-link p-0">
+                  <i class="bi bi-flag-fill" style="color: #cb3e2c;"></i>
+                </a>
+                <a class="btn btn-link p-0">
+                  <i [style.color]="task.objectif === 'Dans le délai' ? '#05616b' : task.objectif === 'Hors délai' ? '#cb3e2c' : '#fed76c'"
+                  class="bi bi-emoji-{{ task.objectif === 'Dans le délai' ? 'smile' : task.objectif === 'Hors délai' ? 'neutral' : 'frown'  }}-fill"></i>
+                </a>
+                <a class="btn btn-link p-0">
+                  <i class="bi bi-eye-slash-fill text-primary"></i>
+                </a>
+                <a class="btn btn-link p-0">
+                  <i class="bi bi-file-earmark-text text-primary"></i>
+                </a>
+              </td>
+            </tr>
+          }
+
+        }@else {
+
+          @for (task of tasks; track $index) {
+            <tr>
+              <td>{{task.taskid}}</td>
+              <td>{{task.caseid}}</td>
+              <td>{{task.dateready | date:'dd/MM/yyyy' }}</td>
+              <td>{{task.dateassignee | date:'dd/MM/yyyy' }}</td>
+              <td>{{(task.datearchivee | date:'dd/MM/yyyy') ?? '-' }}</td>
+              <td>{{task.executeeparmatricule}}</td>
+              <td>{{task.acteur}}</td>
+              <td class="p-0">
+                <a class="btn btn-link p-0">
+                  <i class="bi bi-flag-fill" style="color: #cb3e2c;"></i>
+                </a>
+                <a class="btn btn-link p-0">
+                  <i [style.color]="task.objectif === 'Dans le délai' ? '#05616b' : task.objectif === 'Hors délai' ? '#cb3e2c' : '#fed76c'"
+                  class="bi bi-emoji-{{ task.objectif === 'Dans le délai' ? 'smile' : task.objectif === 'Hors délai' ? 'neutral' : 'frown'  }}-fill"></i>
+                </a>
+                <a class="btn btn-link p-0">
+                  <i class="bi bi-eye-slash-fill text-primary"></i>
+                </a>
+                <a class="btn btn-link p-0">
+                  <i class="bi bi-file-earmark-text text-primary"></i>
+                </a>
+              </td>
+            </tr>
+          }
+
+        }
+
+
+      </tbody>
+    </table>
+  </div>
+</div>

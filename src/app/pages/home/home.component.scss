@@ -1,0 +1,57 @@
+.dropdown-toggle{
+  text-decoration: none;
+  font-size: 1rem;
+  &::after{
+    border: none;
+  }
+  .mr-cs{
+    margin-left: 20px;
+  }
+  i{
+    color: var(--bs-secondary);
+  }
+  .bi-file-fill{
+    transform: rotate(90deg);
+    position: absolute;
+  }
+}
+
+dt{
+  color: #1f3667;
+}
+
+.card{
+  .card-title{
+    color: #1f3667;
+    font-size: 1em;
+    font-weight: 800;
+  }
+
+  .col{
+
+    .card-link{
+      text-decoration: underline var(--bs-primary) solid 4px;
+    }
+
+    &:nth-child(2) .card-link {
+      text-decoration-color: var(--bs-secondary);
+    }
+
+    &:nth-child(3) .card-link {
+      text-decoration-color: #21b2ab;
+    }
+
+    &:nth-child(4) .card-link {
+      text-decoration-color: #efc5c4;
+    }
+
+    &:nth-child(5) .card-link {
+      text-decoration-color: #1f3667;
+    }
+
+  }
+
+}
+
+
+

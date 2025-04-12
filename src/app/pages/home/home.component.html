@@ -1,0 +1,84 @@
+<app-layout></app-layout>
+
+<div class="container px-5">
+
+  <div class="row mb-2">
+    <div class="col">
+      <div class="btn-group">
+        <button class="btn btn-link btn-sm dropdown-toggle p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-file-fill"></i> <span class="mr-cs">Acteur</span>
+        </button>
+        <ul class="dropdown-menu" (click)="onFilter($event, 'Acteur')">
+          <li><a class="dropdown-item" href="#">CSF</a></li>
+          <li><a class="dropdown-item" href="#">OPE</a></li>
+          <li><a class="dropdown-item" href="#">Délégataire</a></li>
+          <li><a class="dropdown-item" href="#">Conseiller client</a></li>
+          <li><a class="dropdown-item" href="#">Tout</a></li>
+        </ul>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-link btn-sm dropdown-toggle p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-file-fill"></i> <span class="mr-cs">Objectf</span>
+        </button>
+        <ul class="dropdown-menu" (click)="onFilter($event, 'Objectf')">
+          <li><a class="dropdown-item" href="#">Dans le délai</a></li>
+          <li><a class="dropdown-item" href="#">Hors délai</a></li>
+          <li><a class="dropdown-item" href="#">En retard</a></li>
+          <li><a class="dropdown-item" href="#">Tout</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <a class="btn btn-secondary">
+        Actualiser
+      </a>
+      <a class="btn btn-primary ms-2">
+        <i class="bi bi-plus-lg"></i>
+        Nouvelle demande
+      </a>
+    </div>
+  </div>
+    <div class="row p-2 mb-5">
+
+        <div class="card col-4 p-2">
+          <div class="card-body">
+            <h5 class="card-title">Mes demandes</h5>
+            <div class="col">
+              <dl class="row mb-1">
+                <dd class="col"><a href="#" class="card-link">Demande à valider</a></dd>
+                <dt class="col-3 d-flex justify-content-end">00</dt>
+              </dl>
+            </div>
+            <div class="col">
+              <dl class="row mb-1">
+                <dd class="col"><a href="#" class="card-link">Demande Cloturées</a></dd>
+                <dt class="col-3 d-flex justify-content-end">00</dt>
+              </dl>
+            </div>
+            <div class="col">
+              <dl class="row mb-1">
+                <dd class="col"><a href="#" class="card-link">Validation BIC</a></dd>
+                <dt class="col-3 d-flex justify-content-end">00</dt>
+              </dl>
+            </div>
+            <div class="col">
+              <dl class="row mb-1">
+                <dd class="col"><a href="#" class="card-link">Contrôle OPE</a></dd>
+                <dt class="col-3 d-flex justify-content-end">00</dt>
+              </dl>
+            </div>
+            <div class="col">
+              <dl class="row mb-1">
+
+                <dt class="col d-flex justify-content-end">00</dt>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="card col-4 ms-4 p-1">
+          <app-mixed-chart [labels]="labels" [filter]="filter" [tasksCompleted]="tasksCompleted" [tasksByFilter]="tasksByFilter"></app-mixed-chart>
+        </div>
+    </div>
+
+    <app-table [tasks]="tasks" [filter]="filter" [tasksByFilter]="tasksByFilter"></app-table>
+</div>

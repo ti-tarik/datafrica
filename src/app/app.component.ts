@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MixedChartComponent } from './mixed-chart/mixed-chart.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MixedChartComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'datafrica';
+  title = 'Datafrica';
 }
 
 

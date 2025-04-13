@@ -3,6 +3,7 @@ import { LayoutComponent } from '../../layout/layout.component';
 import { MixedChartComponent } from '../../widget/mixed-chart/mixed-chart.component';
 import { TableModule } from '../../widget/table/table.module';
 import { TaskService } from '../../services/task.service';
+import { task } from '../../models/task.model';
 
 @Component({
   selector: 'app-home',
@@ -12,19 +13,20 @@ import { TaskService } from '../../services/task.service';
 })
 export class HomeComponent implements OnInit {
 
-  tasks: any[] = []
-  tasksCompleted: any = []
+  tasks: task[] = []
+  tasksCompleted: task[] = []
   labels: string[] = []
-  filter: any = {value: "Tout",action: ""}
-  tasksByFilter: any = []
+  filter: object = {value: "Tout",action: ""}
+  tasksByFilter: task[] = []
 
   constructor(private taskService: TaskService) {}
 
   async ngOnInit(): Promise<any> {
     this.taskService.getAll();
-    await this.taskService.tasksSubject.subscribe((tasks:any) => this.tasks = tasks)
+    await this.taskService.tasksSubject.subscribe((tasks:any) => {
+      this.tasks = tasks
 
-    this.tasksCompleted =  this.tasks.reduce(
+      this.tasksCompleted =  this.tasks.reduce(
         (tasksCompleted:any[], currentValue) => {
           if(typeof currentValue.datearchivee === 'string'){
             tasksCompleted.push(parseInt(currentValue.executeeparmatricule))
@@ -42,6 +44,9 @@ export class HomeComponent implements OnInit {
       },
       [],
     );
+    })
+
+
 
   }
 

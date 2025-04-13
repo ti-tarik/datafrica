@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { task } from '../models/task.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class TaskService {
 
   async getAll() {
 
-    const tasks = [
+    const tasks: task[] = [
       {
         "taskid": 1000001,
         "caseid": 2000001,

@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { task } from '../../models/task.model';
 
 @Component({
   selector: 'app-table',
@@ -7,13 +8,12 @@ import { Component, Input, OnChanges } from '@angular/core';
   standalone: false
 })
 export class TableComponent {
-  @Input() tasks:any;
+  @Input() tasks:task[] = [];
   @Input() filter:any;
-  @Input() tasksByFilter:any;
+  @Input() tasksByFilter:task[] = [];
   search: string = '';
 
   onValueChange(value: string) {
-    console.log(value.length)
     if(value.length > 0) {
       this.tasksByFilter = this.tasks.filter((task:any) => {
         /**Filter by taskid, caseid, executeeparmatricule, acteur */

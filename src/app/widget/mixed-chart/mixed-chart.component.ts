@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { task } from '../../models/task.model';
 
 @Component({
   selector: 'app-mixed-chart',
@@ -8,10 +9,10 @@ import Chart from 'chart.js/auto';
 })
 export class MixedChartComponent implements OnInit  {
   @Input() labels: any;
-  @Input() tasks: any;
-  @Input() tasksCompleted: any;
+  @Input() tasks: task[]= [];
+  @Input() tasksCompleted: task[]= [];
   @Input() filter: any;
-  @Input() tasksByFilter: any;
+  @Input() tasksByFilter: task[]= [];
   public chart: any;
 
   ngOnInit(): void {
